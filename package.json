@@ -1,0 +1,18 @@
+{
+  "name": "nearley-grammar",
+  "main": "./lib/nearley-grammar",
+  "version": "0.0.0",
+  "description": "A nearley language package",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "nearley-grammar:toggle"
+  },
+  "repository": "https://github.com/bojidar-bg/nearley-grammar",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}

@@ -1,0 +1,107 @@
+'scopeName': 'source.nearley'
+'fileTypes': [
+  'ne'
+]
+'name': 'Nearley Grammar'
+'patterns': [
+  {
+    'include': '#line_comments'
+  }
+  {
+    'include': '#setup'
+  }
+  {
+    'include': '#rule'
+  }
+]
+'repository':
+
+  'rule':
+    'patterns': [
+      {
+        'match': '([\\w\\?\\+]+) *([-=]+>) *'
+        'captures':
+          '1': 'name': 'entity.name.variable.other.nearley'
+          '2': 'name': 'punctuation.keyword.operator.nearley'
+      }
+      {'include': '#fullExpression'}
+      {
+        'match': '\\|'
+        'name': 'punctuation.keyword.operator.nearley'
+      }
+    ]
+
+
+  'fullExpression':
+    'patterns': [
+      {'include': '#expression'},
+      {'include': '#postprocessor'}
+    ]
+
+  'expression':
+    'patterns': [
+      {'include': '#expression_part'}
+      {
+        'match': '\\:[\\+\\*\\?]'
+        'name': 'keyword.operator.nearley'
+      }
+    ]
+
+  'expression_part':
+    'patterns': [
+      {
+        'match': '[\\w\\?\\+]+'
+      }
+      {'include': '#strings'}
+      {
+        'begin': '\\('
+        'beginCaptures': '0': 'name': 'meta.brace.round.nearley'
+        'end': '\\)'
+        'endCaptures': '0': 'name': 'meta.brace.round.nearley'
+        'patterns': [
+          {'include': '#expression'}
+        ]
+      }
+    ]
+
+  'postprocessor':
+    'begin': '\{\%',
+    'beginCaptures': '0': 'name': 'punctuation.keyword.operator.section.embedded.begin.js'
+    'end': '\%\}'
+    'endCaptures': '0': 'name': 'punctuation.keyword.operator.section.embedded.end.js'
+    'patterns': [
+      {
+        'include': 'source.js'
+      }
+    ]
+
+  'setup':
+    'begin': '\@\{\%',
+    'beginCaptures': '0': 'name': 'punctuation.keyword.operator.section.embedded.begin.js'
+    'end': '\%\}'
+    'endCaptures': '0': 'name': 'punctuation.keyword.operator.section.embedded.end.js'
+    'patterns': [
+      {
+        'include': 'source.js'
+      }
+    ]
+
+  'strings':
+    'patterns': [
+      {
+        'begin': '"'
+        'beginCaptures': '0': 'name': 'punctuation.definition.string.begin.php'
+        'contentName': 'meta.string-contents.quoted.double.php'
+        'end': '"'
+        'endCaptures': '0': 'name': 'punctuation.definition.string.end.php'
+        'name': 'string.quoted.double.php'
+      }
+      {
+        'begin': '\''
+        'beginCaptures': '0': 'name': 'punctuation.definition.string.begin.php'
+        'contentName': 'meta.string-contents.single.double.php'
+        'end': '\''
+        'endCaptures': '0': 'name': 'punctuation.definition.string.end.php'
+        'name': 'string.quoted.single.php'
+      }
+    ]
