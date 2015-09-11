@@ -1,10 +1,9 @@
 {
   "name": "nearley-grammar",
   "main": "./lib/nearley-grammar",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A nearley language package",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {
     "atom-workspace": "nearley-grammar:toggle"
   },
@@ -13,6 +12,5 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
