@@ -91,19 +91,35 @@
     'patterns': [
       {
         'begin': '"'
-        'beginCaptures': '0': 'name': 'punctuation.definition.string.begin.php'
-        'contentName': 'meta.string-contents.quoted.double.php'
+        'beginCaptures': '0': 'name': 'punctuation.definition.string.begin.js'
         'end': '"'
-        'endCaptures': '0': 'name': 'punctuation.definition.string.end.php'
-        'name': 'string.quoted.double.php'
+        'endCaptures': '0': 'name': 'punctuation.definition.string.end.js'
+        'name': 'string.quoted.double.js'
+        'patterns': [
+          {
+            'include': '#string_escapes'
+          }
+          {
+            'match': '[^"]*$'
+            'name': 'invalid.illegal.string.js'
+          }
+        ]
+      }
+    ]
+
+  'string_escapes':
+    'patterns': [
+      {
+        'match': '\\\\u(?![A-Fa-f0-9]{4}|{[A-Fa-f0-9]+})[^\'"]*'
+        'name': 'invalid.illegal.unicode-escape.js'
       }
       {
-        'begin': '\''
-        'beginCaptures': '0': 'name': 'punctuation.definition.string.begin.php'
-        'contentName': 'meta.string-contents.single.double.php'
-        'end': '\''
-        'endCaptures': '0': 'name': 'punctuation.definition.string.end.php'
-        'name': 'string.quoted.single.php'
+        'match': '\\\\u(?:[A-Fa-f0-9]{4})'
+        'name': 'constant.character.escape.js'
+      }
+      {
+        'match': '\\\\["\'\\\\/bfnrt]'
+        'name': 'constant.character.escape.js'
       }
     ]
 
